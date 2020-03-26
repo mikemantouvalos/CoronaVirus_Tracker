@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Coronavirus Tracker Application</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+        .border {border: 1px solid #CCC;}
+    </style>
+
+</head>
+
+<body>
+
+<div class="jumbotron">
+    <h1 class="display-4">Corona Virus Daily Tracker Application</h1>
+    <p class="lead">This Application lists the current number of total Cases and Deaths per Country, across the Globe.</p>
+    <hr class="my-4">
+    <p><h6>It uses a csv file that gets updated daily.</h6></p>
+    <a class="btn btn-primary btn-lg" target="_blank" href="https://github.com/CSSEGISandData/COVID-19" role="button">Link to CSV file</a>
+</div>
+
+
+<div class="cart">
+    <div class="col-xs-2 border col-xs-offset-4">
+        <div class="card-header">
+            Total Cases:
+        </div>
+        <div class="card-body">
+            <h5 class="card-title" th:text="${totalCases}"></h5>
+        </div>
+    </div>
+    <div class="col-xs-2 border">
+        <div class="card-header">
+            Total Deaths:
+        </div>
+        <div class="card-body">
+            <h5 class="card-title" th:text="${totalDeaths}"></h5>
+        </div>
+    </div>
+</div>
+
+<br>
+<table class="table table-dark">
+    <tr>
+        <th>Country</th>
+        <th>State</th>
+        <th>Total Confirmed</th>
+        <th>Total Deaths</th>
+    </tr>
+    <tr th:each="stats : ${locationStats}">
+        <td th:text="${stats.getCountry()}"></td>
+        <td th:text="${stats.getState()}"></td>
+        <td th:text="${stats.getLatestTotalCases()}"></td>
+        <td th:text="${stats.getTotalDeaths()}"></td>
+
+    </tr>
+</table>
+
+
+
+</body>
+
+</html>
+
